@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>By Köftem Menü</title>
+    <!-- Importing Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Impact&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: #faf8f5;
+            color: #1a1a1a;
+            line-height: 1.5;
+        }
+
+        /* Modernized Hero Header */
+        header {
+            background: linear-gradient(135deg, #111111 0%, #1c1c1c 100%);
+            color: #fff;
+            text-align: center;
+            padding: 3.5rem 1rem 2.5rem 1rem;
+            position: relative;
+            border-bottom: 4px solid #e74c3c;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .logo-img {
+            width: 85px;
+            height: auto;
+            margin-bottom: 0.75rem;
+            border-radius: 50%;
+            border: 2px solid #f1c40f;
+            box-shadow: 0 4px 15px rgba(241, 196, 15, 0.2);
+        }
+
+        .logo-text {
+            text-transform: uppercase;
+            line-height: 0.95;
+        }
+
+        .logo-text .by-word {
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            font-size: 1.7rem;
+            color: #f1c40f;
+            letter-spacing: 2px;
+            display: block;
+        }
+
+        .logo-text .koftem-word {
+            font-family: 'Alfa Slab One', serif;
+            font-size: 3.4rem;
+            color: #e74c3c;
+            letter-spacing: -1px;
+            display: block;
+            text-shadow: 3px 3px 0px #000;
+        }
+
+        header p {
+            color: #a0aec0;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Styled Location Tag */
+        .location-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.06);
+            color: #f1c40f;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            margin-top: 1.25rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+        }
+
+        /* Split-Column Dynamic Layout Container */
+        .main-wrapper {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        @media (min-width: 992px) {
+            .main-wrapper {
+                grid-template-columns: 1.1fr 0.9fr; /* Left side slightly wider for foods */
+            }
+        }
+
+        .menu-column {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .menu-section h2 {
+            color: #1a1a1a;
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .menu-section h2::after {
+            content: '';
+            flex-grow: 1;
+            height: 2px;
+            background: linear-gradient(to right, #e74c3c, rgba(241, 196, 15, 0.2), transparent);
+        }
+
+        .items-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        /* Modern Horizontal Row Menu Items */
+        .menu-item {
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.02);
+            border: 1px solid #eae6df;
+            display: flex;
+            height: 100px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(231, 76, 60, 0.06);
+            border-color: rgba(231, 76, 60, 0.2);
+        }
+
+        /* Horizontal Image Layout */
+        .item-img {
+            width: 100px;
+            min-width: 100px;
+            height: 100%;
+            object-fit: cover;
+            background-color: #f3f3f3;
+            border-right: 1px solid #f5f5f5;
+        }
+
+        .item-details {
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-grow: 1;
+            background: linear-gradient(90deg, #ffffff 0%, #fdfdfd 100%);
+        }
+
+        .item-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            letter-spacing: -0.3px;
+        }
+
+        .item-price {
+            font-weight: 800;
+            color: #e74c3c;
+            font-size: 1.15rem;
+            background: #fff5f4;
+            padding: 0.4rem 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(231, 76, 60, 0.08);
+            white-space: nowrap;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            background-color: #111111;
+            color: #718096;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 6rem;
+            border-top: 3px solid #f1c40f;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img class="logo-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXFZ6Oj_2lG-xCEGcS5ZUrWtrDDmjJN19msDUVMUOcZx7XQRXqpKbZT70l&s=10" alt="By Köftem Logo">
+            <h1 class="logo-text">
+                <span class="by-word">BY</span>
+                <span class="koftem-word">KÖFTEM</span>
+            </h1>
+        </div>
+        <p>Geleneksel Lezzetler • Hoş Geldiniz</p>
+        
+        <div class="location-badge">
+            <span>📍</span> ŞUBE: NARLICA
+        </div>
+    </header>
+
+    <!-- Split-Grid Wrapper to keep page packed and dynamic -->
+    <div class="main-wrapper">
+        
+        <!-- LEFT COLUMN: FOODS -->
+        <div class="menu-column">
+            
+            <!-- 1. Dürümler Bölümü -->
+            <div class="menu-section">
+                <h2>Dürümler</h2>
+                <div class="items-list">
+                    
+                    <div class="menu-item">
+                        <img class="item-img" src="https://images.unsplash.com/photo-1662111559132-7fa34bb2f54a?auto=format&fit=crop&w=300&q=80" alt="Antakya Köfte">
+                        <div class="item-details">
+                            <span class="item-name">Antakya Köfte Dürüm</span>
+                            <span class="item-price">220 TL</span>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <img class="item-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=300&q=80" alt="Kebap Usulü Köfte">
+                        <div class="item-details">
+                            <span class="item-name">Kebap Usulü Köfte</span>
+                            <span class="item-price">250 TL</span>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <img class="item-img" src="https://images.unsplash.com/photo-1547058881-aa0edd92aab3?auto=format&fit=crop&w=300&q=80" alt="Cheddarlı Köfte Dürüm">
+                        <div class="item-details">
+                            <span class="item-name">Cheddarlı Köfte Dürüm</span>
+                            <span class="item-price">260 TL</span>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <img class="item-img" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=300&q=80" alt="Kaşarlı Antakya Köfte">
+                        <div class="item-details">
+                            <span class="item-name">Kaşarlı Antakya Köfte</span>
+                            <span class="item-price">260 TL</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 2. Burgerler Bölümü -->
+            <div class="menu-section">
+                <h2>Burgerler</h2>
+                <div class="items-list">
+                    
+                    <div class="menu-item">
+                        <img class="item-img" src="https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=300&q=80" alt="Tavuk Burger">
+                        <div class="item-details">
+                            <span class="item-name">Tavuk Burger</span>
+                            <span class="item-price">220 TL</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 3. Atıştırmalık Bölümü -->
+            <div class="menu-section">
+                <h2>Atıştırmalık</h2>
+                <div class="items-list">
+                    
+                    <div class="menu-item">
+                        <img class="item-img" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=300&q=80" alt="Kızarmış Patates">
+                        <div class="item-details">
+                            <span class="item-name">Kızarmış Patates</span>
+                            <span class="item-price">100 TL</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: DRINKS -->
+        <div class="menu-column">
+            
+            <!-- 4. İçecekler Bölümü -->
+            <div class="menu-section">
+                <h2>İçecekler</h2>
+                <div class="items-list">
+                    
+                    <div class="menu-item">
+                        <img class="item-img" src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=300&q=80" alt="Pepsi 33cl">
+                        <div class="item-details">
+                            <span class="item-name">Pepsi (33cl)</span>
+                            <span class="item-price">80 TL</span>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <img class="item-img" src="https://images.unsplash.com/photo-1625938146369-adc83368bda7?auto=format&fit=crop&w=300&q=80" alt="Ayran 33cl">
+                        <div class="item-details">
+                            <span class="item-name">Ayran (33cl)</span>
+                            <span class="item-price">60 TL</span>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <img class="item-img" src="https://images.unsplash.com/photo-1527018601619-a508a2be00cd?auto=format&fit=crop&w=300&q=80" alt="Ayran 20cl">
+                        <div class="item-details">
+                            <span class="item-name">Ayran (20cl)</span>
+                            <span class="item-price">55 TL</span>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <img class="item-img" src="https://images.unsplash.com/photo-1608885898957-a599fb1698d6?auto=format&fit=crop&w=300&q=80" alt="Su">
+                        <div class="item-details">
+                            <span class="item-name">Su</span>
+                            <span class="item-price">20 TL</span>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <img class="item-img" src="https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=300&q=80" alt="Pepsi 1L">
+                        <div class="item-details">
+                            <span class="item-name">Pepsi (1L)</span>
+                            <span class="item-price">100 TL</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 By Köftem. Tüm Hakları Saklıdır. | Narlıca</p>
+    </footer>
+
+</body>
+</html>
